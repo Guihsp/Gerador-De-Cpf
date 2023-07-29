@@ -7,10 +7,19 @@
     <title>Gerador de CPF</title>
 </head>
 <body>
-    <h1 id="title">Gerador de CPF</h1>
-
+    <header>
+        <h1 id="title">Gerador e verificador de CPF</h1>
+    </header>
     <section id="container">
-        
+        <input type="text" name="text" id="display">
+        <div class="box-checkbox">
+            <label for="cpf" id="subtitle">Gerar com Pontuação</label>
+            <input type="checkbox" name="cpf" value="check" id="checkbox">
+        </div>
+        <div class="box-btns">
+            <button class="btn btn-generate">Gerar CPF</button>
+            <button class="btn btn-validate">Validar CPF</button>
+        </div>
     </section>
     <script src="assets/js/script.js"></script>
 </body>
