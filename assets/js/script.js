@@ -124,11 +124,11 @@ const validateCpf = (cpfLiteral) => {
         return false;
     }
 
-    const validateOrNot = verifyCpf();
+    const validOrNot = verifyCpf();
 
     const setResult = () => {
         const p = document.createElement("p");
-        if (validateOrNot) {
+        if (validOrNot) {
             outPut.classList.add("true");
             outPut.classList.remove("false");
             p.innerText = `CPF válido`;
