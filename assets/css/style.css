@@ -72,11 +72,14 @@ header {
 
 #links{
     display: flex;
-    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
     position: absolute;
     top: 95%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 90%;
 }
 .link-item a{
     color: #000;
