@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Gerador de CPF</title>
 </head>
+
 <body>
     <header>
-        <h1 id="title">Gerador e verificador de CPF</h1>
+        <h1 id="title">Gerador e validador de CPF</h1>
     </header>
     <section id="container">
+        <p class="subtitle">*O gerador de CPF tem como objetivo a geração de CPF para a prática e teste de software.</p>
+        <p class="subtitle">*O uso dos dados gerados é responsabilidade do usuário</p>
         <input type="text" name="text" id="display">
-        <div class="box-checkbox">
-            <label for="cpf" id="subtitle">Gerar com Pontuação</label>
-            <input type="checkbox" name="cpf" value="check" id="checkbox">
-        </div>
+
         <div class="box-btns">
             <button class="btn btn-generate">Gerar CPF</button>
             <button class="btn btn-validate">Validar CPF</button>
         </div>
+
+        <div class="output-result">
+
+        </div>
     </section>
+    <ul id="links">
+        <li class="link-item">
+            <a href="https://github.com/Guihsp/Gerador-De-Cpf" target="_blank" rel="noopener noreferrer">Ver
+                Repositorio</a>
+        </li>
+        <li class="link-item">
+            <a href="https://www.linkedin.com/in/guilherme-henrique-silva-pereira-9283b023a" target="_blank"
+                rel="noopener noreferrer">Linkedin</a>
+        </li>
+    </ul>
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
