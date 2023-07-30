@@ -1,5 +1,5 @@
 # Gerador-De-Cpf
-Esse projeto é um GERADOR e VERIFICADOR de CPF validos.
+Esse projeto é um GERADOR ALEATORIO e VERIFICADOR de CPF validos.
 
 Ele tem com objetivo para testes e práticas de software. O projeto visa também praticar o desenvolvimento com a linguagem JAVASCRIPT
 com conceitos básicos da linguagem.
