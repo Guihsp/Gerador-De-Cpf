@@ -132,10 +132,12 @@ const validateCpf = (cpfLiteral) => {
             outPut.classList.add("true");
             outPut.classList.remove("false");
             p.innerText = `CPF válido`;
+            p.style.fontWeight = (`bold`); 
         } else {
             outPut.classList.add("false");
             outPut.classList.remove("true");
             p.innerText = `CPF inválido`;
+            p.style.fontWeight = (`bold`); 
         }
         outPut.innerHTML = ``;
         outPut.appendChild(p);
