@@ -81,12 +81,11 @@ const generateCpf = () => {
 }
 
 const validateCpf = (cpfLiteral) => {
-
-    const convertCpfToArray = cpfString => {
-        let cpfToArray = cpfString.replace(/\D/g, "").split("").map(Number);
+    const convertCpfToArray = () => {
+        let cpfToArray = cpfLiteral.replace(/\D/g, "").split("").map(Number);
         return cpfToArray;
     };
-    const cpfArray = convertCpfToArray(cpfLiteral);
+    const cpfArray = convertCpfToArray();
 
     const isValidFirstDigit = () => {
         let factor = 10, mult = 0, rest = 0, sum = 0;
@@ -97,7 +96,7 @@ const validateCpf = (cpfLiteral) => {
             factor--;
         }
         rest = (sum * 10) % 11;
-        
+
         firstDigit = rest === 10 || rest === 11 ? 0 : rest;
         return firstDigit === cpfArray[9];
     }
@@ -111,7 +110,7 @@ const validateCpf = (cpfLiteral) => {
             factor--;
         }
         rest = (sum * 10) % 11;
-        
+
         secondDigit = rest === 10 || rest === 11 ? 0 : rest;
         return secondDigit === cpfArray[10];
     }
@@ -128,22 +127,16 @@ const validateCpf = (cpfLiteral) => {
 
     const setResult = () => {
         const p = document.createElement("p");
-        if (validOrNot) {
-            outPut.classList.add("true");
-            outPut.classList.remove("false");
-            p.innerText = `CPF válido`;
-            p.style.fontWeight = (`bold`); 
-        } else {
-            outPut.classList.add("false");
-            outPut.classList.remove("true");
-            p.innerText = `CPF inválido`;
-            p.style.fontWeight = (`bold`); 
-        }
-        outPut.innerHTML = ``;
+        const msg = [`CPF válido`, `CPF inválido`];
+        outPut.classList.toggle("true", validOrNot);
+        outPut.classList.toggle("false", !validOrNot);
+        p.innerText = `${msg[validOrNot ? 0 : 1]}`;
+        p.style.fontWeight = "bold";
+        outPut.innerHTML = "";
         outPut.appendChild(p);
     }
 
-    return setResult(convertCpfToArray(cpfLiteral));
+    return setResult();
 
 };
 
