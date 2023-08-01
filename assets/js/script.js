@@ -1,7 +1,7 @@
 const display = document.querySelector(`#display`);
 const btnGenerateCpf = document.querySelector(`.btn-generate`);
 const btnValidateCpf = document.querySelector(`.btn-validate`);
-const outPut = document.querySelector(`.output-result`);
+const outPut = document.querySelector(`.result-output`);
 
 document.addEventListener("click", event => {
     const element = event.target;
@@ -73,7 +73,6 @@ const generateCpf = () => {
             return `${cpfArray[0]}${cpfArray[1]}${cpfArray[2]}.${cpfArray[3]}${cpfArray[4]}${cpfArray[5]}.${cpfArray[6]}${cpfArray[7]}${cpfArray[8]}-${digiti1}${digiti2}`;
         }
 
-
         return formattedCPF(cpfArray, checkDigit1, checkDigit2);
     }
 
@@ -82,14 +81,21 @@ const generateCpf = () => {
 
 const validateCpf = (cpfLiteral) => {
     const convertCpfToArray = () => {
-        let cpfToArray = cpfLiteral.replace(/\D/g, "").split("").map(Number);
+        let cpfToArray = cpfLiteral.split('.').join('').split('-').join('').split('').map(Number);
         return cpfToArray;
     };
-    const cpfArray = convertCpfToArray();
+    let cpfArray = convertCpfToArray();
+
+    const checkArrayLength = () => {
+        if (cpfArray.length !== 11) return false;
+        return true
+    }
+    const arrayLength = checkArrayLength();
 
     const isValidFirstDigit = () => {
         let factor = 10, mult = 0, rest = 0, sum = 0;
         let firstDigit = cpfArray[9];
+
         for (let i = 0; i < 9; i++) {
             mult = cpfArray[i] * factor;
             sum += mult;
@@ -104,6 +110,7 @@ const validateCpf = (cpfLiteral) => {
     const isValidSecondDigit = () => {
         let factor = 11, mult = 0, rest = 0, sum = 0;
         let secondDigit = cpfArray[10];
+
         for (let i = 0; i < 10; i++) {
             mult = cpfArray[i] * factor;
             sum += mult;
@@ -114,20 +121,24 @@ const validateCpf = (cpfLiteral) => {
         secondDigit = rest === 10 || rest === 11 ? 0 : rest;
         return secondDigit === cpfArray[10];
     }
-
     const firstDigit = isValidFirstDigit();
     const secondDigit = isValidSecondDigit();
 
-    const verifyCpf = () => {
-        if (cpfArray.length === 11 && firstDigit && secondDigit) return true;
+
+    const validOrNotCPf = () => {
+        if (arrayLength && firstDigit && secondDigit) return true;
         return false;
     }
+    const validOrNot = validOrNotCPf();
 
-    const validOrNot = verifyCpf();
+    const creatP = () => {
+        const p = document.createElement(`p`);
+        return p;
+    }
+    const p = creatP();
 
     const setResult = () => {
-        const p = document.createElement("p");
-        const msg = [`CPF válido`, `CPF inválido`];
+        const msg = [`CPF valido`, `CPF invalido`];
         outPut.classList.toggle("true", validOrNot);
         outPut.classList.toggle("false", !validOrNot);
         p.innerText = `${msg[validOrNot ? 0 : 1]}`;
@@ -137,7 +148,4 @@ const validateCpf = (cpfLiteral) => {
     }
 
     return setResult();
-
 };
-
-

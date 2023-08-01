@@ -58,15 +58,15 @@ header {
     color: #eee;
 }
 
-.output-result{
+.result-output{
     padding: 10px 0;
     width: 200px;
     text-align: center;
 }
-.output-result.true{
+.result-output.true{
     background: #4eee4eda;
 }
-.output-result.false{
+.result-output.false{
     background: #e24747c9;
 }
 
