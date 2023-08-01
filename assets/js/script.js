@@ -69,11 +69,11 @@ const generateCpf = () => {
         const checkDigit1 = calculateCheckDigit1();
         const checkDigit2 = calculateCheckDigit2();
 
-        const formattedCPF = (cpfArray, digiti1, digiti2) => {
-            return `${cpfArray[0]}${cpfArray[1]}${cpfArray[2]}.${cpfArray[3]}${cpfArray[4]}${cpfArray[5]}.${cpfArray[6]}${cpfArray[7]}${cpfArray[8]}-${digiti1}${digiti2}`;
+        const formattedCPF = () => {
+            return `${cpfArray[0]}${cpfArray[1]}${cpfArray[2]}.${cpfArray[3]}${cpfArray[4]}${cpfArray[5]}.${cpfArray[6]}${cpfArray[7]}${cpfArray[8]}-${checkDigit1}${checkDigit2}`;
         }
 
-        return formattedCPF(cpfArray, checkDigit1, checkDigit2);
+        return formattedCPF();
     }
 
     return constructorCpf();
