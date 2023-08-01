@@ -1,6 +1,4 @@
 const display = document.querySelector(`#display`);
-const btnGenerateCpf = document.querySelector(`.btn-generate`);
-const btnValidateCpf = document.querySelector(`.btn-validate`);
 const outPut = document.querySelector(`.result-output`);
 
 document.addEventListener("click", event => {
