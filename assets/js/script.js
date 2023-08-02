@@ -24,51 +24,36 @@ const generateCpf = () => {
         }
         return cpfArray;
     }
+    const cpfArray = generateCpfNumbers();
 
     const constructorCpf = () => {
         const calculateCheckDigit1 = () => {
-            let sum = 0, rest = 0, checkDigit1;
+            let sum = 0, rest = 0, checkDigit;
 
-            for (let i = 0; i < 9; i++) {
-                sum += cpfArray[i] * (10 - i);
-            }
+            for (let i = 0; i < 9; i++) sum += cpfArray[i] * (10 - i);
 
             rest = sum % 11;
 
-            if (rest < 2) {
-                checkDigit1 = 0;
-            } else {
-                checkDigit1 = 11 - rest;
-            }
-            return checkDigit1;
+            checkDigit = rest < 2 ? 0 : 11 - rest;
+            return checkDigit;
         }
+        const firstCheckDigit = calculateCheckDigit1();
 
         const calculateCheckDigit2 = () => {
-            let sum = 0, rest = 0, checkDigit2;
+            let sum = 0, rest = 0, checkDigit;
 
-            for (let i = 0; i < 9; i++) {
-                sum += cpfArray[i] * (11 - i);
-            }
+            for (let i = 0; i < 9; i++) sum += cpfArray[i] * (11 - i);
 
-            const checkDigit1 = calculateCheckDigit1();
-            sum += (checkDigit1 * 2);
+            sum += (firstCheckDigit * 2);
             rest = sum % 11;
 
-            if (rest < 2) {
-                checkDigit2 = 0;
-            } else {
-                checkDigit2 = 11 - rest;
-            }
-
-            return checkDigit2;
+            checkDigit = rest < 2 ? 0 : 11 - rest;
+            return checkDigit;
         }
-
-        const cpfArray = generateCpfNumbers();
-        const checkDigit1 = calculateCheckDigit1();
-        const checkDigit2 = calculateCheckDigit2();
+        const secondCheckDigit = calculateCheckDigit2();
 
         const formattedCPF = () => {
-            return `${cpfArray[0]}${cpfArray[1]}${cpfArray[2]}.${cpfArray[3]}${cpfArray[4]}${cpfArray[5]}.${cpfArray[6]}${cpfArray[7]}${cpfArray[8]}-${checkDigit1}${checkDigit2}`;
+            return `${cpfArray.slice(0, 3).join('')}.${cpfArray.slice(3, 6).join('')}.${cpfArray.slice(6, 9).join('')}-${firstCheckDigit}${secondCheckDigit}`;
         }
 
         return formattedCPF();
@@ -79,14 +64,12 @@ const generateCpf = () => {
 
 const validateCpf = (cpfLiteral) => {
     const convertCpfToArray = () => {
-        let cpfToArray = cpfLiteral.split('.').join('').split('-').join('').split('').map(Number);
-        return cpfToArray;
+        return cpfLiteral.split('.').join('').split('-').join('').split('').map(Number);
     };
-    let cpfArray = convertCpfToArray();
+    const cpfArray = convertCpfToArray();
 
     const checkArrayLength = () => {
-        if (cpfArray.length !== 11) return false;
-        return true
+        return cpfArray.length === 11;
     }
     const arrayLength = checkArrayLength();
 
@@ -124,8 +107,7 @@ const validateCpf = (cpfLiteral) => {
 
 
     const validOrNotCPf = () => {
-        if (arrayLength && firstDigit && secondDigit) return true;
-        return false;
+        return arrayLength && firstDigit && secondDigit;
     }
     const validOrNot = validOrNotCPf();
 
